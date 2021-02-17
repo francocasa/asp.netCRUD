@@ -1,0 +1,17 @@
+﻿Se utilizo el codigo
+Scaffold-DbContext "Server=Server;Database=Database;user=user;password=password;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+Con esto se pudo obtener el modelo y el contexto
+
+Luego se crea el controller, segun el modelo a utilizar
+
+En caso se requiera utilizar el sistema con local host, se debera hacer lo siguiente, dentro de Startup.cs
+    En el metodo ConfigureServices, agregar el codigo
+            services.AddCors();
+    Luego en el metodo Configure agregar:
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:4200"); //este es el URL del frontend local
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
